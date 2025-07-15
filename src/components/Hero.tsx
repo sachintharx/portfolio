@@ -4,6 +4,29 @@ import { ArrowRight, Download } from "lucide-react";
 const Hero: React.FC = () => {
   const [imageError, setImageError] = useState(false);
 
+  const handleViewWork = () => {
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleDownloadCV = () => {
+    try {
+      const link = document.createElement("a");
+      link.href = "/Hashara_CV.pdf";
+      link.download = "Hashara_Vidusanka_CV.pdf";
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error downloading CV:", error);
+      // Fallback: open the PDF in a new tab
+      window.open("/Hashara_CV.pdf", "_blank");
+    }
+  };
+
   return (
     <section className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 text-white flex items-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -24,11 +47,17 @@ const Hero: React.FC = () => {
               intelligent systems that make a meaningful impact.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
+              <button
+                onClick={handleViewWork}
+                className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+              >
                 View My Work
                 <ArrowRight size={20} />
               </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors flex items-center justify-center gap-2">
+              <button
+                onClick={handleDownloadCV}
+                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors flex items-center justify-center gap-2"
+              >
                 Download CV
                 <Download size={20} />
               </button>
@@ -44,7 +73,9 @@ const Hero: React.FC = () => {
                   onError={() => setImageError(true)}
                 />
               ) : (
-                <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">HV</div>
+                <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+                  HV
+                </div>
               )}
             </div>
           </div>
