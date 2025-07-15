@@ -34,8 +34,8 @@ const Hero: React.FC = () => {
               </button>
             </div>
           </div>
-          <div className="lg:flex justify-center">
-            <div className="w-80 h-80 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
+          <div className="flex justify-center">
+            <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
               {!imageError ? (
                 <img
                   src="/profile-image.jpg"
@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
                   onError={() => setImageError(true)}
                 />
               ) : (
-                <div className="text-6xl font-bold text-white">HV</div>
+                <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">HV</div>
               )}
             </div>
           </div>

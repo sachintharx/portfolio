@@ -8,20 +8,6 @@
 			"group": "build",
 			"isBackground": true,
 			"problemMatcher": []
-		},
-		{
-			"label": "Open Browser",
-			"type": "shell",
-			"command": "start http://localhost:5173",
-			"group": "build",
-			"presentation": {
-				"echo": false,
-				"reveal": "never",
-				"focus": false,
-				"panel": "shared",
-				"showReuseMessage": false,
-				"clear": false
-			}
 		}
 	]
 }
