@@ -32,8 +32,8 @@ const Hero: React.FC = () => {
   const handleDownloadCV = () => {
     try {
       const link = document.createElement("a");
-      link.href = "/Hashara_CV.pdf";
-      link.download = "Hashara_Vidusanka_CV.pdf";
+      link.href = "/HASHARA_VIDUSANKA_RESUME_AI_ML.pdf";
+      link.download = "HASHARA_VIDUSANKA_RESUME_AI_ML.pdf";
       link.target = "_blank";
       document.body.appendChild(link);
       link.click();

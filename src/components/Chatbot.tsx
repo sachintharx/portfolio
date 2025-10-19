@@ -6,6 +6,123 @@ interface Message {
   content: string;
 }
 
+// Helper function to parse inline formatting (bold text)
+const parseInlineFormatting = (text: string) => {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={index} className="font-bold text-gray-900">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return <span key={index}>{part}</span>;
+  });
+};
+
+// Helper function to format message content with better structure
+const formatMessage = (content: string) => {
+  // Clean up escaped characters
+  let cleanContent = content
+    .replace(/\\n/g, "\n") // Replace \n with actual newlines
+    .replace(/\\\*/g, "*") // Replace \* with *
+    .replace(/\\\\/g, "\\"); // Replace \\ with \
+
+  const elements: React.ReactNode[] = [];
+
+  // Split content by lines
+  const lines = cleanContent.split("\n");
+
+  lines.forEach((line, lineIndex) => {
+    const trimmedLine = line.trim();
+
+    if (!trimmedLine) {
+      // Empty line - add spacing
+      elements.push(<div key={`space-${lineIndex}`} className="h-3" />);
+      return;
+    }
+
+    // Check for standalone bold headers (entire line is **text**)
+    const standaloneBoldMatch = trimmedLine.match(/^\*\*([^*]+)\*\*:?\s*$/);
+    if (standaloneBoldMatch) {
+      elements.push(
+        <div
+          key={`header-${lineIndex}`}
+          className="font-bold text-gray-900 text-base mt-4 mb-2"
+        >
+          {standaloneBoldMatch[1]}
+        </div>
+      );
+      return;
+    }
+
+    // Check for bullet points (starting with * or -)
+    const bulletMatch = trimmedLine.match(/^[\*\-]\s+(.+)$/);
+    if (bulletMatch) {
+      const bulletContent = bulletMatch[1];
+
+      // Parse the bullet content for inline bold formatting
+      elements.push(
+        <div
+          key={`bullet-${lineIndex}`}
+          className="flex items-start gap-3 mb-3 ml-1"
+        >
+          <span className="text-pink-600 font-bold text-base mt-0.5 flex-shrink-0">
+            •
+          </span>
+          <div className="flex-1 text-gray-700 leading-relaxed">
+            {parseInlineFormatting(bulletContent)}
+          </div>
+        </div>
+      );
+      return;
+    }
+
+    // Check for numbered lists
+    const numberMatch = trimmedLine.match(/^(\d+)\.\s+(.+)$/);
+    if (numberMatch) {
+      elements.push(
+        <div
+          key={`number-${lineIndex}`}
+          className="flex items-start gap-3 mb-3 ml-1"
+        >
+          <span className="text-pink-600 font-semibold min-w-[24px] flex-shrink-0">
+            {numberMatch[1]}.
+          </span>
+          <div className="flex-1 text-gray-700 leading-relaxed">
+            {parseInlineFormatting(numberMatch[2])}
+          </div>
+        </div>
+      );
+      return;
+    }
+
+    // Regular paragraph with potential inline formatting
+    if (trimmedLine.includes("**")) {
+      elements.push(
+        <p
+          key={`para-${lineIndex}`}
+          className="mb-3 leading-relaxed text-gray-700"
+        >
+          {parseInlineFormatting(trimmedLine)}
+        </p>
+      );
+    } else {
+      elements.push(
+        <p
+          key={`para-${lineIndex}`}
+          className="mb-3 leading-relaxed text-gray-700"
+        >
+          {trimmedLine}
+        </p>
+      );
+    }
+  });
+
+  return <div className="space-y-0.5">{elements}</div>;
+};
+
 const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -16,8 +133,27 @@ const Chatbot: React.FC = () => {
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [personalData, setPersonalData] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Load personal data from text file
+  useEffect(() => {
+    const loadPersonalData = async () => {
+      try {
+        const response = await fetch("/hashara-data.txt");
+        const text = await response.text();
+        setPersonalData(text);
+      } catch (error) {
+        console.error("Error loading personal data:", error);
+        // Fallback to basic data if file fails to load
+        setPersonalData(
+          "Hashara Vidusanka is a Computer Engineering undergraduate at University of Ruhuna, specializing in AI/ML."
+        );
+      }
+    };
+    loadPersonalData();
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -56,7 +192,22 @@ const Chatbot: React.FC = () => {
               {
                 parts: [
                   {
-                    text: `You are Hashara Vidusanka's portfolio AI assistant. Hashara is a Computer Engineering undergraduate at University of Ruhuna, specializing in AI/ML, Deep Learning, and Computer Vision. He has 6+ months of industry experience as an AI/ML Engineering Trainee at Sri Lanka Telecom (SLT) where he developed an AI-powered chatbot for LECO using RAG architecture. His skills include TensorFlow, Keras, PyTorch, OpenCV, FastAPI, LangChain, and more. He has completed projects like Traffic Flow Clustering, Parking Spot Detection, CAPTCHA Detection, and Potato Disease Classification. Answer questions about Hashara's background, skills, projects, and experience in a friendly and professional manner. User question: ${userMessage}`,
+                    text: `You are Hashara Vidusanka's portfolio AI assistant. Use the following comprehensive information to answer questions accurately and professionally.
+
+=== PERSONAL DATA ===
+${personalData}
+
+=== RESPONSE FORMAT INSTRUCTIONS ===
+IMPORTANT: Format your responses properly:
+- Use **bold text** for project titles, section headers, and important names (wrap with double asterisks like **this**)
+- Use bullet points (* or -) for listing items
+- Use numbered lists (1., 2., 3.) when showing steps or ordered information
+- Add blank lines between different sections for better readability
+- Keep responses informative but concise
+- When listing projects, format as: **Project Name:** description
+- Always be friendly and professional
+
+User question: ${userMessage}`,
                   },
                 ],
               },
@@ -149,15 +300,19 @@ const Chatbot: React.FC = () => {
                 }`}
               >
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                  className={`max-w-[85%] rounded-2xl px-5 py-4 ${
                     message.role === "user"
                       ? "bg-gradient-to-r from-pink-600 to-purple-600 text-white"
-                      : "bg-white text-gray-800 shadow-md border border-gray-200"
+                      : "bg-white text-gray-700 shadow-md border border-gray-200"
                   }`}
                 >
-                  <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                    {message.content}
-                  </p>
+                  <div className="text-sm leading-relaxed">
+                    {message.role === "assistant" ? (
+                      formatMessage(message.content)
+                    ) : (
+                      <p className="whitespace-pre-wrap">{message.content}</p>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
