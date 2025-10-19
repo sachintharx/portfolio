@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
@@ -6,6 +6,71 @@ const Contact: React.FC = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: leftRef, isVisible: leftVisible } = useScrollAnimation();
   const { ref: rightRef, isVisible: rightVisible } = useScrollAnimation();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
+    null
+  );
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("access_key", "6e511ed4-b30b-42c1-9938-0085dacadf9e");
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("subject", formData.subject);
+    formDataToSend.append("message", formData.message);
+
+    // Auto-response configuration
+    formDataToSend.append("autoresponse", "true");
+    formDataToSend.append(
+      "autoresponse_subject",
+      "Thank you for reaching out!"
+    );
+    formDataToSend.append(
+      "autoresponse_message",
+      `Hi ${formData.name},\n\nThank you for getting in touch! I have received your message and will get back to you as soon as possible.\n\nYour message:\n"${formData.message}"\n\nBest regards,\nSachintha Hashara\nAI/ML Developer\n\nEmail: sachinthahashara@gmail.com\nPhone: +94 77 872 5277`
+    );
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden bg-white">
@@ -136,7 +201,7 @@ const Contact: React.FC = () => {
             <h3 className="text-2xl font-bold text-gray-900 mb-8">
               Send Message
             </h3>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
@@ -147,8 +212,12 @@ const Contact: React.FC = () => {
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-5 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:bg-white transition-all"
                   placeholder="Your Name"
+                  required
                 />
               </div>
               <div>
@@ -161,8 +230,12 @@ const Contact: React.FC = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-5 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:bg-white transition-all"
                   placeholder="your.email@example.com"
+                  required
                 />
               </div>
               <div>
@@ -175,8 +248,12 @@ const Contact: React.FC = () => {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   className="w-full px-5 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:bg-white transition-all"
                   placeholder="Project Discussion"
+                  required
                 />
               </div>
               <div>
@@ -188,16 +265,60 @@ const Contact: React.FC = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows={5}
                   className="w-full px-5 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-pink-500 focus:bg-white transition-all resize-none"
                   placeholder="Tell me about your project..."
+                  required
                 ></textarea>
               </div>
+
+              {submitStatus === "success" && (
+                <div className="p-4 bg-green-100 text-green-700 rounded-2xl flex items-center gap-2">
+                  <svg
+                    className="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="font-medium">
+                    Message sent successfully! I'll get back to you soon.
+                  </span>
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div className="p-4 bg-red-100 text-red-700 rounded-2xl flex items-center gap-2">
+                  <svg
+                    className="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="font-medium">
+                    Failed to send message. Please try again.
+                  </span>
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full bg-pink-600 text-white py-4 px-6 rounded-2xl hover:bg-pink-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 font-bold"
+                disabled={isSubmitting}
+                className="w-full bg-pink-600 text-white py-4 px-6 rounded-2xl hover:bg-pink-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 font-bold disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>
