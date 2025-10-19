@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 interface HeaderProps {
   activeSection: string;
@@ -43,115 +43,121 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/80 backdrop-blur-xl shadow-lg border-b border-gray-200/50"
-          : "bg-white/60 backdrop-blur-md border-b border-white/20"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur-lg shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-3">
-          {/* Logo/Brand */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo/Brand - Minimalist */}
           <div
-            className="flex items-center group cursor-pointer"
+            className="flex items-center cursor-pointer group"
             onClick={() => scrollToSection("home")}
           >
-            <div className="relative">
-              {/* Animated background glow */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-lg blur opacity-0 group-hover:opacity-30 transition duration-500"></div>
-
-              {/* Logo container */}
-              <div className="relative flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 group-hover:from-blue-100 group-hover:to-indigo-100 transition-all duration-300">
-                <Sparkles className="w-5 h-5 text-blue-600 animate-pulse" />
-                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent animate-gradient">
-                  Hashara Vidusanka
-                </h1>
-              </div>
+            <div className="flex items-center gap-2">
+              <div
+                className={`w-2 h-2 rounded-full bg-pink-600 group-hover:scale-150 transition-transform duration-300`}
+              ></div>
+              <h1
+                className={`text-2xl font-bold tracking-tight transition-colors duration-300 ${
+                  scrolled ? "text-gray-900" : "text-white"
+                }`}
+              >
+                Hashara Vidusanka
+              </h1>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-2 bg-white/50 backdrop-blur-md px-3 py-2 rounded-full border border-gray-200/50 shadow-lg">
+          {/* Desktop Navigation - Clean minimal style */}
+          <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 overflow-hidden group ${
+                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   activeSection === item.id
-                    ? "text-white"
-                    : "text-gray-700 hover:text-gray-900"
+                    ? scrolled
+                      ? "text-pink-600"
+                      : "text-white"
+                    : scrolled
+                    ? "text-gray-600 hover:text-gray-900"
+                    : "text-white/80 hover:text-white"
                 }`}
               >
-                {/* Active background */}
+                {item.label}
+                {/* Active underline indicator */}
                 {activeSection === item.id && (
-                  <span className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-full shadow-lg shadow-blue-500/40 animate-gradient"></span>
-                )}
-
-                {/* Hover background */}
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-
-                {/* Label */}
-                <span className="relative z-10">{item.label}</span>
-
-                {/* Active indicator dot */}
-                {activeSection === item.id && (
-                  <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full"></span>
+                  <span
+                    className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full ${
+                      scrolled ? "bg-pink-600" : "bg-white"
+                    }`}
+                  ></span>
                 )}
               </button>
             ))}
           </nav>
 
+          {/* CTA Button */}
+          <div className="hidden md:block">
+            <button
+              onClick={() => scrollToSection("contact")}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                scrolled
+                  ? "bg-gray-900 text-white hover:bg-gray-800 shadow-lg hover:shadow-xl"
+                  : "bg-white text-gray-900 hover:bg-white/90 shadow-xl"
+              }`}
+            >
+              Let's Talk
+            </button>
+          </div>
+
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden p-2 rounded-xl transition-all duration-300 ${
-              isMenuOpen
-                ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg"
-                : "bg-white/80 text-gray-700 hover:bg-white shadow-md"
+            className={`md:hidden p-2.5 rounded-lg transition-all duration-300 ${
+              scrolled
+                ? "text-gray-900 hover:bg-gray-100"
+                : "text-white hover:bg-white/10"
             }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? (
-              <X size={24} className="animate-spin-once" />
-            ) : (
-              <Menu size={24} />
-            )}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-500 ${
-            isMenuOpen ? "max-h-96 opacity-100 pb-4" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="px-2 pt-2 space-y-2">
-            {navItems.map((item, index) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left px-4 py-3 rounded-xl text-base font-semibold transition-all duration-300 transform ${
-                  activeSection === item.id
-                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg scale-105"
-                    : "text-gray-700 bg-white/50 hover:bg-white hover:shadow-md hover:scale-102"
-                } ${
-                  isMenuOpen
-                    ? "translate-x-0 opacity-100"
-                    : "translate-x-4 opacity-0"
-                }`}
-                style={{
-                  transitionDelay: isMenuOpen ? `${index * 50}ms` : "0ms",
-                }}
-              >
-                <span className="flex items-center gap-2">
-                  {activeSection === item.id && (
-                    <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                  )}
-                  {item.label}
-                </span>
-              </button>
-            ))}
+        {/* Mobile Navigation - Full screen overlay */}
+        {isMenuOpen && (
+          <div className="md:hidden fixed inset-0 top-20 bg-white z-40 animate-fade-in">
+            <div className="flex flex-col h-full p-8">
+              <nav className="space-y-2">
+                {navItems.map((item, index) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`block w-full text-left px-6 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-600 hover:bg-gray-50"
+                    }`}
+                    style={{
+                      animationDelay: `${index * 50}ms`,
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </nav>
+
+              <div className="mt-auto">
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="w-full px-6 py-4 bg-gray-900 text-white rounded-2xl text-lg font-semibold hover:bg-gray-800 transition-colors"
+                >
+                  Get In Touch
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </header>
   );

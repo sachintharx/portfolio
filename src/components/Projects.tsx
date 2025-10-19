@@ -14,8 +14,8 @@ const Projects: React.FC = () => {
       image:
         "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=600",
       tech: ["FastAPI", "LangChain", "HuggingFace", "FAISS", "BM25", "Python"],
-      liveDemo: "#",
-      github: "#",
+      liveDemo: "https://www.linkedin.com/posts/sachintha-hashara-vidusanka-rx_internship-ai-machinelearning-activity-7307921254324256768-fMyW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEZubtIB2syUtCLjqaH05L81UP6ylQuQrsI",
+      github: "https://github.com/sachintharx/chatbot_LECO",
     },
     {
       title: "Traffic Flow Clustering",
@@ -24,18 +24,18 @@ const Projects: React.FC = () => {
       image:
         "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=600",
       tech: ["Python", "MLflow", "Optuna", "FastAPI", "Streamlit", "SUMO"],
-      liveDemo: "#",
-      github: "https://github.com/yourusername/Traffic-Flow-Clustering",
+      liveDemo: "https://github.com/sachintharx/Traffic-Flow-Clustering-",
+      github: "https://github.com/sachintharx/Traffic-Flow-Clustering-",
     },
     {
       title: "Parking Spot Detection System",
       description:
         "Developed a real-time smart parking system using Computer Vision and CNN to classify parking spot availability. Applied ROI-based change detection for improved efficiency.",
       image:
-        "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "https://www.keflatwork.com/wp-content/uploads/2020/04/shutterstock_401478484.jpg",
       tech: ["Python", "OpenCV", "TensorFlow", "Keras", "NumPy", "Matplotlib"],
-      liveDemo: "#",
-      github: "https://github.com/yourusername/Parking-Spot-Detection",
+      liveDemo: "https://github.com/sachintharx/Parking-Spot-Detection",
+      github: "https://github.com/sachintharx/Parking-Spot-Detection",
     },
     {
       title: "CAPTCHA Detection Model",
@@ -44,7 +44,7 @@ const Projects: React.FC = () => {
       image:
         "https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=600",
       tech: ["Python", "TensorFlow", "Keras", "CNN", "RNN"],
-      liveDemo: "#",
+      liveDemo: "https://github.com/sachintharx/CAPTCHA-Detection-Model",
       github: "https://github.com/sachintharx/CAPTCHA-Detection-Model",
     },
     {
@@ -54,7 +54,7 @@ const Projects: React.FC = () => {
       image:
         "https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg?auto=compress&cs=tinysrgb&w=600",
       tech: ["Python", "TensorFlow", "Keras", "CNN", "Image Processing"],
-      liveDemo: "#",
+      liveDemo: "https://github.com/sachintharx/Potato-Disease-Classification",
       github: "https://github.com/sachintharx/Potato-Disease-Classification",
     },
     {
@@ -64,7 +64,7 @@ const Projects: React.FC = () => {
       image:
         "https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg?auto=compress&cs=tinysrgb&w=600",
       tech: ["Python", "Scikit-learn", "Logistic Regression", "SVM", "ML"],
-      liveDemo: "#",
+      liveDemo: "https://www.researchgate.net/publication/379564822_XXX-X-XXXX-XXXX-XXXXX00_C20XX_IEEE_Predict_Smokers_and_Drinkers",
       github: "https://github.com/sachintharx/ML_Project_Group_21",
     },
   ];
