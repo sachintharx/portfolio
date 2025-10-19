@@ -7,97 +7,118 @@ import {
   Cloud,
   GitBranch,
 } from "lucide-react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const Skills: React.FC = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation();
+
   const skillCategories = [
     {
-      title: "Machine Learning",
+      title: "AI/ML & Deep Learning",
       icon: <Brain className="w-8 h-8 text-blue-600" />,
       skills: [
         "TensorFlow",
-        "PyTorch",
-        "Scikit-learn",
         "Keras",
-        "XGBoost",
-        "Random Forest",
+        "PyTorch",
+        "OpenCV",
+        "Scikit-learn",
+        "CNN, RNN, Autoencoders",
       ],
     },
     {
-      title: "Programming",
+      title: "Programming Languages",
       icon: <Code className="w-8 h-8 text-green-600" />,
-      skills: ["Python", "R", "SQL", "JavaScript", "Java", "C++"],
+      skills: ["Python", "C++", "C#", "Java", "JavaScript", "Dart", "SQL"],
     },
     {
-      title: "Data Science",
+      title: "Frameworks & Libraries",
       icon: <BarChart3 className="w-8 h-8 text-purple-600" />,
-      skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly", "Jupyter"],
+      skills: [
+        "FastAPI",
+        "React.js",
+        "Node.js",
+        "Flutter",
+        "WPF",
+        "Spring Boot",
+      ],
     },
     {
-      title: "Databases",
+      title: "AI/ML Tools",
       icon: <Database className="w-8 h-8 text-orange-600" />,
-      skills: [
-        "MySQL",
-        "PostgreSQL",
-        "MongoDB",
-        "Redis",
-        "Elasticsearch",
-        "BigQuery",
-      ],
+      skills: ["LangChain", "HuggingFace", "FAISS", "BM25", "MLflow", "Optuna"],
     },
     {
       title: "Cloud & DevOps",
       icon: <Cloud className="w-8 h-8 text-cyan-600" />,
-      skills: [
-        "AWS",
-        "Google Cloud",
-        "Docker",
-        "Kubernetes",
-        "Jenkins",
-        "MLflow",
-      ],
+      skills: ["AWS", "Docker", "Terraform", "DBMS", "GitHub", "Jira"],
     },
     {
-      title: "Tools & Frameworks",
+      title: "Data & Visualization",
       icon: <GitBranch className="w-8 h-8 text-red-600" />,
       skills: [
-        "Git",
-        "Apache Spark",
-        "Airflow",
-        "Flask",
-        "FastAPI",
+        "NumPy",
+        "Matplotlib",
+        "Seaborn",
         "Streamlit",
+        "Figma",
+        "Adobe Suite",
       ],
     },
   ];
 
   return (
-    <section id="skills" className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50"></div>
+    <section id="skills" className="py-24 relative overflow-hidden bg-white">
+      {/* Decorative elements */}
+      <div className="absolute top-1/4 right-10 w-72 h-72 bg-pink-100 rounded-full blur-3xl opacity-40"></div>
+      <div className="absolute bottom-1/4 left-10 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
+
+      {/* Dot pattern */}
+      <div className="absolute top-40 right-1/4 grid grid-cols-3 gap-2 opacity-20">
+        {[...Array(9)].map((_, i) => (
+          <div key={i} className="w-2 h-2 rounded-full bg-pink-500"></div>
+        ))}
+      </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-medium mb-4">
-            Skills & Expertise
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">
-            Technical Arsenal
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            headerVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
+          <p className="text-sm text-gray-500 uppercase tracking-wider mb-3">
+            My Skills
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Technical <span className="text-pink-600">Arsenal</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             A comprehensive toolkit for building intelligent solutions
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {skillCategories.map((category, index) => (
             <div
               key={index}
-              className="group backdrop-blur-sm bg-white/70 p-6 rounded-2xl border border-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+              className={`group bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 ${
+                gridVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="flex items-center mb-6">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 group-hover:scale-110 transition-transform duration-300">
+                <div className="p-3 bg-pink-100 rounded-xl group-hover:scale-110 group-hover:bg-pink-200 transition-all duration-300">
                   {category.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 ml-3">
+                <h3 className="text-xl font-bold text-gray-900 ml-4">
                   {category.title}
                 </h3>
               </div>
@@ -107,8 +128,8 @@ const Skills: React.FC = () => {
                     key={skillIndex}
                     className="flex items-center group/item"
                   >
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 mr-3 group-hover/item:scale-150 transition-transform"></div>
-                    <span className="text-gray-700 group-hover/item:text-gray-900 group-hover/item:translate-x-1 transition-all">
+                    <div className="w-2 h-2 rounded-full bg-pink-500 mr-3 group-hover/item:scale-150 transition-transform"></div>
+                    <span className="text-gray-600 group-hover/item:text-gray-900 group-hover/item:translate-x-1 transition-all">
                       {skill}
                     </span>
                   </div>

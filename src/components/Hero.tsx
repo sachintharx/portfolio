@@ -144,12 +144,13 @@ const Hero: React.FC = () => {
               </span>
             </h1>
             <h2 className="text-2xl md:text-3xl text-blue-100 font-semibold drop-shadow-md">
-              AI/ML Engineer & Data Scientist
+              Computer Engineering Undergraduate | AI/ML Engineer
             </h2>
             <p className="text-lg text-blue-50/90 leading-relaxed max-w-xl drop-shadow-md">
-              Passionate about leveraging artificial intelligence and machine
-              learning to solve real-world problems. I specialize in building
-              intelligent systems that make a meaningful impact.
+              Undergraduate at University of Ruhuna, specializing in AI/ML, Deep
+              Learning, and Computer Vision. Passionate about building
+              intelligent systems that solve real-world problems through
+              innovative technology.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button

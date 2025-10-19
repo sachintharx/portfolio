@@ -1,86 +1,130 @@
 import React from "react";
 import { Award, Users, Coffee, Code } from "lucide-react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const About: React.FC = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
+  const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
+
   const stats = [
     {
       icon: <Award className="w-8 h-8 text-blue-600" />,
-      value: "5+",
-      label: "Years Experience",
+      value: "7th",
+      label: "Semester Completed",
     },
     {
       icon: <Code className="w-8 h-8 text-blue-600" />,
-      value: "50+",
+      value: "16+",
       label: "Projects Completed",
     },
     {
       icon: <Users className="w-8 h-8 text-blue-600" />,
-      value: "20+",
-      label: "Happy Clients",
+      value: "6m+",
+      label: "Industry Experience",
     },
     {
       icon: <Coffee className="w-8 h-8 text-blue-600" />,
-      value: "1000+",
-      label: "Cups of Coffee",
+      value: "2",
+      label: "Research Papers",
     },
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/50 to-transparent"></div>
+    <section id="about" className="py-24 relative overflow-hidden bg-gray-50">
+      {/* Decorative dot pattern - top left */}
+      <div className="absolute top-20 left-10 grid grid-cols-3 gap-2 opacity-30">
+        {[...Array(9)].map((_, i) => (
+          <div key={i} className="w-2 h-2 rounded-full bg-pink-500"></div>
+        ))}
+      </div>
+
+      {/* Decorative dot pattern - bottom right */}
+      <div className="absolute bottom-20 right-10 grid grid-cols-4 gap-2 opacity-30">
+        {[...Array(16)].map((_, i) => (
+          <div key={i} className="w-2 h-2 rounded-full bg-blue-500"></div>
+        ))}
+      </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-medium mb-4">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            headerVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
+          <p className="text-sm text-gray-500 uppercase tracking-wider mb-3">
             About Me
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">
-            Crafting AI Solutions
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Crafting <span className="text-pink-600">AI Solutions</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            A dedicated AI/ML engineer with a passion for innovation and
-            problem-solving
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            I am here ready to help you in making creative digital products
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <div className="backdrop-blur-sm bg-white/60 p-8 rounded-2xl border border-white shadow-xl">
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-6">
+          <div
+            ref={contentRef}
+            className={`transition-all duration-1000 delay-200 ${
+              contentVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-10"
+            }`}
+          >
+            <div className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 My Journey
               </h3>
-              <div className="space-y-4 text-gray-700">
-                <p className="text-base leading-relaxed">
-                  I'm a passionate AI/ML engineer with over 5 years of
-                  experience in developing cutting-edge solutions that bridge
-                  the gap between complex algorithms and practical applications.
+              <div className="space-y-4 text-gray-600 leading-relaxed">
+                <p>
+                  I am an undergraduate in the Faculty of Engineering,
+                  University of Ruhuna, following a Computer Engineering Degree
+                  Program. Currently in my 7th semester, I've gained valuable
+                  industry experience as an AI/ML Engineering Trainee at Sri
+                  Lanka Telecom (SLT).
                 </p>
-                <p className="text-base leading-relaxed">
-                  My expertise spans across machine learning, deep learning,
-                  computer vision, and natural language processing. I've had the
-                  privilege of working on diverse projects ranging from
-                  predictive analytics to autonomous systems.
+                <p>
+                  My expertise includes Deep Learning (CNN, RNN, Autoencoders),
+                  Retrieval-Augmented Generation (RAG), Computer Vision, and
+                  Natural Language Processing. I've worked on diverse projects
+                  ranging from AI-powered chatbots to traffic flow analysis and
+                  parking spot detection systems.
                 </p>
-                <p className="text-base leading-relaxed">
-                  When I'm not coding, you can find me exploring the latest
-                  research papers, contributing to open-source projects, or
-                  mentoring aspiring data scientists.
+                <p>
+                  I am a keen learner who is always willing to learn something
+                  new and adapt myself in any new environment, while gaining
+                  ample knowledge when working as a team. I would love to apply
+                  my knowledge in computer engineering and develop my skills
+                  within the industrial context.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div ref={statsRef} className="grid grid-cols-2 gap-6">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="group backdrop-blur-sm bg-white/60 p-6 rounded-2xl border border-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                className={`group bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 ${
+                  statsVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                }`}
+                style={{ transitionDelay: `${index * 100 + 400}ms` }}
               >
-                <div className="flex justify-center mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                  {stat.icon}
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 bg-pink-100 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    {React.cloneElement(stat.icon as React.ReactElement, {
+                      className: "w-8 h-8 text-pink-600",
+                    })}
+                  </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+                  <div className="text-4xl font-bold text-gray-900 mb-2">
                     {stat.value}
                   </div>
                   <div className="text-gray-600 text-sm font-medium">
