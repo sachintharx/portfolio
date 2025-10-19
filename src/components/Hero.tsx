@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Hi, I'm{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
-                Hashara Vidusanka
+                Hashara Vidusanka 2
               </span>
             </h1>
             <h2 className="text-xl md:text-2xl mb-8 text-blue-200">
