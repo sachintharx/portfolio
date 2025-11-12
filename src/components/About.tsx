@@ -9,22 +9,22 @@ const About: React.FC = () => {
 
   const stats = [
     {
-      icon: <Award className="w-8 h-8 text-blue-600" />,
+      icon: <Award className="w-8 h-8 text-primary-600" />,
       value: "7th",
       label: "Semester Completed",
     },
     {
-      icon: <Code className="w-8 h-8 text-blue-600" />,
+      icon: <Code className="w-8 h-8 text-primary-600" />,
       value: "16+",
       label: "Projects Completed",
     },
     {
-      icon: <Users className="w-8 h-8 text-blue-600" />,
+      icon: <Users className="w-8 h-8 text-primary-600" />,
       value: "6m+",
       label: "Industry Experience",
     },
     {
-      icon: <Coffee className="w-8 h-8 text-blue-600" />,
+      icon: <Coffee className="w-8 h-8 text-primary-600" />,
       value: "2",
       label: "Research Papers",
     },
@@ -42,7 +42,7 @@ const About: React.FC = () => {
       {/* Decorative dot pattern - bottom right */}
       <div className="absolute bottom-20 right-10 grid grid-cols-4 gap-2 opacity-30">
         {[...Array(16)].map((_, i) => (
-          <div key={i} className="w-2 h-2 rounded-full bg-blue-500"></div>
+          <div key={i} className="w-2 h-2 rounded-full bg-primary-500"></div>
         ))}
       </div>
 
@@ -55,13 +55,13 @@ const About: React.FC = () => {
               : "opacity-0 translate-y-10"
           }`}
         >
-          <p className="text-sm text-gray-500 uppercase tracking-wider mb-3">
+          <p className="text-sm text-dark-500 uppercase tracking-wider mb-3">
             About Me
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Crafting <span className="text-pink-600">AI Solutions</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-dark-900 mb-4">
+            Crafting <span className="text-accent-600">AI Solutions</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-dark-600 max-w-2xl mx-auto">
             I am here ready to help you in making creative digital products
           </p>
         </div>
@@ -76,10 +76,10 @@ const About: React.FC = () => {
             }`}
           >
             <div className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              <h3 className="text-2xl font-bold text-dark-900 mb-6">
                 My Journey
               </h3>
-              <div className="space-y-4 text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-dark-600 leading-relaxed">
                 <p>
                   I am an undergraduate in the Faculty of Engineering,
                   University of Ruhuna, following a Computer Engineering Degree
@@ -117,17 +117,17 @@ const About: React.FC = () => {
                 style={{ transitionDelay: `${index * 100 + 400}ms` }}
               >
                 <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-pink-100 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 bg-accent-100 rounded-xl group-hover:scale-110 transition-transform duration-300">
                     {React.cloneElement(stat.icon as React.ReactElement, {
-                      className: "w-8 h-8 text-pink-600",
+                      className: "w-8 h-8 text-accent-600",
                     })}
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-gray-900 mb-2">
+                  <div className="text-4xl font-bold text-dark-900 mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-gray-600 text-sm font-medium">
+                  <div className="text-dark-600 text-sm font-medium">
                     {stat.label}
                   </div>
                 </div>

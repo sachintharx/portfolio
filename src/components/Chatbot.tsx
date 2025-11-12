@@ -12,7 +12,7 @@ const parseInlineFormatting = (text: string) => {
   return parts.map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={index} className="font-bold text-gray-900">
+        <strong key={index} className="font-bold text-dark-900">
           {part.slice(2, -2)}
         </strong>
       );
@@ -49,7 +49,7 @@ const formatMessage = (content: string) => {
       elements.push(
         <div
           key={`header-${lineIndex}`}
-          className="font-bold text-gray-900 text-base mt-4 mb-2"
+          className="font-bold text-dark-900 text-base mt-4 mb-2"
         >
           {standaloneBoldMatch[1]}
         </div>
@@ -71,7 +71,7 @@ const formatMessage = (content: string) => {
           <span className="text-pink-600 font-bold text-base mt-0.5 flex-shrink-0">
             •
           </span>
-          <div className="flex-1 text-gray-700 leading-relaxed">
+          <div className="flex-1 text-dark-700 leading-relaxed">
             {parseInlineFormatting(bulletContent)}
           </div>
         </div>
@@ -90,7 +90,7 @@ const formatMessage = (content: string) => {
           <span className="text-pink-600 font-semibold min-w-[24px] flex-shrink-0">
             {numberMatch[1]}.
           </span>
-          <div className="flex-1 text-gray-700 leading-relaxed">
+          <div className="flex-1 text-dark-700 leading-relaxed">
             {parseInlineFormatting(numberMatch[2])}
           </div>
         </div>
@@ -103,7 +103,7 @@ const formatMessage = (content: string) => {
       elements.push(
         <p
           key={`para-${lineIndex}`}
-          className="mb-3 leading-relaxed text-gray-700"
+          className="mb-3 leading-relaxed text-dark-700"
         >
           {parseInlineFormatting(trimmedLine)}
         </p>
@@ -112,7 +112,7 @@ const formatMessage = (content: string) => {
       elements.push(
         <p
           key={`para-${lineIndex}`}
-          className="mb-3 leading-relaxed text-gray-700"
+          className="mb-3 leading-relaxed text-dark-700"
         >
           {trimmedLine}
         </p>
@@ -253,7 +253,7 @@ User question: ${userMessage}`,
       {/* Chatbot Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 p-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-full shadow-2xl hover:shadow-pink-500/50 hover:scale-110 transition-all duration-300 group"
+        className="fixed bottom-6 right-6 z-50 p-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-full shadow-2xl hover:shadow-accent-500/50 hover:scale-110 transition-all duration-300 group"
         aria-label="Open chatbot"
       >
         {isOpen ? (
@@ -268,7 +268,7 @@ User question: ${userMessage}`,
 
       {/* Chatbot Widget */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-96 h-[600px] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 animate-slide-in-right">
+        <div className="fixed bottom-24 right-6 z-50 w-96 h-[600px] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-dark-200 animate-slide-in-right">
           {/* Header */}
           <div className="bg-gradient-to-r from-pink-600 to-purple-600 p-6 text-white">
             <div className="flex items-center justify-between">
@@ -291,7 +291,7 @@ User question: ${userMessage}`,
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
+          <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-dark-50">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -303,7 +303,7 @@ User question: ${userMessage}`,
                   className={`max-w-[85%] rounded-2xl px-5 py-4 ${
                     message.role === "user"
                       ? "bg-gradient-to-r from-pink-600 to-purple-600 text-white"
-                      : "bg-white text-gray-700 shadow-md border border-gray-200"
+                      : "bg-white text-dark-700 shadow-md border border-dark-200"
                   }`}
                 >
                   <div className="text-sm leading-relaxed">
@@ -318,7 +318,7 @@ User question: ${userMessage}`,
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-white text-gray-800 rounded-2xl px-4 py-3 shadow-md border border-gray-200">
+                <div className="bg-white text-dark-800 rounded-2xl px-4 py-3 shadow-md border border-dark-200">
                   <Loader2 size={20} className="animate-spin text-pink-600" />
                 </div>
               </div>
@@ -327,7 +327,7 @@ User question: ${userMessage}`,
           </div>
 
           {/* Input Area */}
-          <div className="p-4 bg-white border-t border-gray-200">
+          <div className="p-4 bg-white border-t border-dark-200">
             <div className="flex items-center gap-2">
               <input
                 ref={inputRef}
@@ -337,7 +337,7 @@ User question: ${userMessage}`,
                 onKeyPress={handleKeyPress}
                 placeholder="Type your message..."
                 disabled={isLoading}
-                className="flex-1 px-4 py-3 bg-gray-50 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all text-sm disabled:opacity-50"
+                className="flex-1 px-4 py-3 bg-dark-50 rounded-full focus:outline-none focus:ring-2 focus:ring-accent-500 transition-all text-sm disabled:opacity-50"
               />
               <button
                 onClick={sendMessage}

@@ -56,11 +56,11 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
           >
             <div className="flex items-center gap-2">
               <div
-                className={`w-2 h-2 rounded-full bg-pink-600 group-hover:scale-150 transition-transform duration-300`}
+                className={`w-2 h-2 rounded-full bg-accent-600 group-hover:scale-150 transition-transform duration-300`}
               ></div>
               <h1
                 className={`text-2xl font-bold tracking-tight transition-colors duration-300 ${
-                  scrolled ? "text-gray-900" : "text-white"
+                  scrolled ? "text-dark-900" : "text-white"
                 }`}
               >
                 Hashara Vidusanka
@@ -77,10 +77,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
                 className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   activeSection === item.id
                     ? scrolled
-                      ? "text-pink-600"
+                      ? "text-accent-600"
                       : "text-white"
                     : scrolled
-                    ? "text-gray-600 hover:text-gray-900"
+                    ? "text-dark-600 hover:text-dark-900"
                     : "text-white/80 hover:text-white"
                 }`}
               >
@@ -89,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
                 {activeSection === item.id && (
                   <span
                     className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full ${
-                      scrolled ? "bg-pink-600" : "bg-white"
+                      scrolled ? "bg-accent-600" : "bg-white"
                     }`}
                   ></span>
                 )}
@@ -103,8 +103,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
               onClick={() => scrollToSection("contact")}
               className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                 scrolled
-                  ? "bg-gray-900 text-white hover:bg-gray-800 shadow-lg hover:shadow-xl"
-                  : "bg-white text-gray-900 hover:bg-white/90 shadow-xl"
+                  ? "bg-dark-900 text-white hover:bg-dark-800 shadow-lg hover:shadow-xl"
+                  : "bg-white text-dark-900 hover:bg-white/90 shadow-xl"
               }`}
             >
               Let's Talk
@@ -115,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
           <button
             className={`md:hidden p-2.5 rounded-lg transition-all duration-300 ${
               scrolled
-                ? "text-gray-900 hover:bg-gray-100"
+                ? "text-dark-900 hover:bg-dark-100"
                 : "text-white hover:bg-white/10"
             }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -135,8 +135,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
                     onClick={() => scrollToSection(item.id)}
                     className={`block w-full text-left px-6 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 ${
                       activeSection === item.id
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-600 hover:bg-gray-50"
+                        ? "bg-dark-900 text-white"
+                        : "text-dark-600 hover:bg-dark-50"
                     }`}
                     style={{
                       animationDelay: `${index * 50}ms`,
@@ -150,7 +150,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
               <div className="mt-auto">
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="w-full px-6 py-4 bg-gray-900 text-white rounded-2xl text-lg font-semibold hover:bg-gray-800 transition-colors"
+                  className="w-full px-6 py-4 bg-dark-900 text-white rounded-2xl text-lg font-semibold hover:bg-dark-800 transition-colors"
                 >
                   Get In Touch
                 </button>

@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-dark-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* About Section */}
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
             <h3 className="text-xl font-bold mb-4 text-white">
               Hashara Vidusanka
             </h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">
+            <p className="text-dark-400 text-sm leading-relaxed mb-4">
               AI/ML Engineer passionate about creating intelligent solutions and
               pushing the boundaries of technology.
             </p>
@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
                 href="https://www.linkedin.com/in/sachintha-hashara-vidusanka-a4289028b"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-gray-800 rounded-lg hover:bg-blue-600 transition-colors"
+                className="p-2 bg-dark-800 rounded-lg hover:bg-primary-600 transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
                 href="https://github.com/sachintharx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
+                className="p-2 bg-dark-800 rounded-lg hover:bg-gray-700 transition-colors"
                 aria-label="GitHub"
               >
                 <Github size={20} />
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
               <li>
                 <button
                   onClick={() => scrollToSection("home")}
-                  className="text-gray-400 hover:text-pink-500 transition-colors text-sm flex items-center group"
+                  className="text-dark-400 hover:text-accent-500 transition-colors text-sm flex items-center group"
                 >
                   <span className="group-hover:translate-x-1 transition-transform">
                     Home
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
               <li>
                 <button
                   onClick={() => scrollToSection("about")}
-                  className="text-gray-400 hover:text-pink-500 transition-colors text-sm flex items-center group"
+                  className="text-dark-400 hover:text-accent-500 transition-colors text-sm flex items-center group"
                 >
                   <span className="group-hover:translate-x-1 transition-transform">
                     About
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
               <li>
                 <button
                   onClick={() => scrollToSection("skills")}
-                  className="text-gray-400 hover:text-pink-500 transition-colors text-sm flex items-center group"
+                  className="text-dark-400 hover:text-accent-500 transition-colors text-sm flex items-center group"
                 >
                   <span className="group-hover:translate-x-1 transition-transform">
                     Skills
@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
               <li>
                 <button
                   onClick={() => scrollToSection("projects")}
-                  className="text-gray-400 hover:text-pink-500 transition-colors text-sm flex items-center group"
+                  className="text-dark-400 hover:text-accent-500 transition-colors text-sm flex items-center group"
                 >
                   <span className="group-hover:translate-x-1 transition-transform">
                     Projects
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
               <li>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="text-gray-400 hover:text-pink-500 transition-colors text-sm flex items-center group"
+                  className="text-dark-400 hover:text-accent-500 transition-colors text-sm flex items-center group"
                 >
                   <span className="group-hover:translate-x-1 transition-transform">
                     Contact
@@ -104,25 +104,25 @@ const Footer: React.FC = () => {
           {/* Services/Expertise */}
           <div>
             <h3 className="text-lg font-bold mb-4 text-white">Expertise</h3>
-            <ul className="space-y-2 text-sm text-gray-400">
+            <ul className="space-y-2 text-sm text-dark-400">
               <li className="flex items-center">
-                <span className="w-1.5 h-1.5 bg-pink-500 rounded-full mr-2"></span>
+                <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2"></span>
                 Machine Learning
               </li>
               <li className="flex items-center">
-                <span className="w-1.5 h-1.5 bg-pink-500 rounded-full mr-2"></span>
+                <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2"></span>
                 Deep Learning
               </li>
               <li className="flex items-center">
-                <span className="w-1.5 h-1.5 bg-pink-500 rounded-full mr-2"></span>
+                <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2"></span>
                 Computer Vision
               </li>
               <li className="flex items-center">
-                <span className="w-1.5 h-1.5 bg-pink-500 rounded-full mr-2"></span>
+                <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2"></span>
                 NLP & LLMs
               </li>
               <li className="flex items-center">
-                <span className="w-1.5 h-1.5 bg-pink-500 rounded-full mr-2"></span>
+                <span className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2"></span>
                 Full-Stack Development
               </li>
             </ul>
@@ -135,7 +135,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="mailto:sachinthahashara@gmail.com"
-                  className="flex items-start text-gray-400 hover:text-pink-500 transition-colors text-sm group"
+                  className="flex items-start text-dark-400 hover:text-accent-500 transition-colors text-sm group"
                 >
                   <Mail size={16} className="mr-2 mt-0.5 flex-shrink-0" />
                   <span className="group-hover:translate-x-1 transition-transform">
@@ -146,7 +146,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="tel:+94778725277"
-                  className="flex items-start text-gray-400 hover:text-pink-500 transition-colors text-sm group"
+                  className="flex items-start text-dark-400 hover:text-accent-500 transition-colors text-sm group"
                 >
                   <Phone size={16} className="mr-2 mt-0.5 flex-shrink-0" />
                   <span className="group-hover:translate-x-1 transition-transform">
@@ -154,7 +154,7 @@ const Footer: React.FC = () => {
                   </span>
                 </a>
               </li>
-              <li className="flex items-start text-gray-400 text-sm">
+              <li className="flex items-start text-dark-400 text-sm">
                 <MapPin size={16} className="mr-2 mt-0.5 flex-shrink-0" />
                 <span>Sri Lanka</span>
               </li>
@@ -163,9 +163,9 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-800 pt-8">
+        <div className="border-t border-dark-800 pt-8">
           <div className="flex justify-center items-center">
-            <p className="text-gray-400 text-sm text-center">
+            <p className="text-dark-400 text-sm text-center">
               © {new Date().getFullYear()} Hashara Vidusanka. All rights
               reserved.
             </p>

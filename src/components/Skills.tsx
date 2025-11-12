@@ -16,7 +16,7 @@ const Skills: React.FC = () => {
   const skillCategories = [
     {
       title: "AI/ML & Deep Learning",
-      icon: <Brain className="w-8 h-8 text-blue-600" />,
+      icon: <Brain className="w-8 h-8 text-primary-600" />,
       skills: [
         "TensorFlow",
         "Keras",
@@ -33,7 +33,7 @@ const Skills: React.FC = () => {
     },
     {
       title: "Frameworks & Libraries",
-      icon: <BarChart3 className="w-8 h-8 text-purple-600" />,
+      icon: <BarChart3 className="w-8 h-8 text-accent-700" />,
       skills: [
         "FastAPI",
         "React.js",
@@ -70,13 +70,13 @@ const Skills: React.FC = () => {
   return (
     <section id="skills" className="py-24 relative overflow-hidden bg-white">
       {/* Decorative elements */}
-      <div className="absolute top-1/4 right-10 w-72 h-72 bg-pink-100 rounded-full blur-3xl opacity-40"></div>
+      <div className="absolute top-1/4 right-10 w-72 h-72 bg-accent-100 rounded-full blur-3xl opacity-40"></div>
       <div className="absolute bottom-1/4 left-10 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
 
       {/* Dot pattern */}
       <div className="absolute top-40 right-1/4 grid grid-cols-3 gap-2 opacity-20">
         {[...Array(9)].map((_, i) => (
-          <div key={i} className="w-2 h-2 rounded-full bg-pink-500"></div>
+          <div key={i} className="w-2 h-2 rounded-full bg-accent-500"></div>
         ))}
       </div>
 
@@ -92,10 +92,10 @@ const Skills: React.FC = () => {
           <p className="text-sm text-gray-500 uppercase tracking-wider mb-3">
             My Skills
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Technical <span className="text-pink-600">Arsenal</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-dark-900 mb-4">
+            Technical <span className="text-accent-600">Arsenal</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-dark-600 max-w-2xl mx-auto">
             A comprehensive toolkit for building intelligent solutions
           </p>
         </div>
@@ -115,10 +115,10 @@ const Skills: React.FC = () => {
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="flex items-center mb-6">
-                <div className="p-3 bg-pink-100 rounded-xl group-hover:scale-110 group-hover:bg-pink-200 transition-all duration-300">
+                <div className="p-3 bg-accent-100 rounded-xl group-hover:scale-110 group-hover:bg-accent-200 transition-all duration-300">
                   {category.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 ml-4">
+                <h3 className="text-xl font-bold text-dark-900 ml-4">
                   {category.title}
                 </h3>
               </div>
@@ -128,8 +128,8 @@ const Skills: React.FC = () => {
                     key={skillIndex}
                     className="flex items-center group/item"
                   >
-                    <div className="w-2 h-2 rounded-full bg-pink-500 mr-3 group-hover/item:scale-150 transition-transform"></div>
-                    <span className="text-gray-600 group-hover/item:text-gray-900 group-hover/item:translate-x-1 transition-all">
+                    <div className="w-2 h-2 rounded-full bg-accent-500 mr-3 group-hover/item:scale-150 transition-transform"></div>
+                    <span className="text-dark-600 group-hover/item:text-dark-900 group-hover/item:translate-x-1 transition-all">
                       {skill}
                     </span>
                   </div>

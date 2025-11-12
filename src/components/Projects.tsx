@@ -72,7 +72,7 @@ const Projects: React.FC = () => {
   return (
     <section
       id="projects"
-      className="py-24 relative overflow-hidden bg-gray-50"
+      className="py-24 relative overflow-hidden bg-dark-50"
     >
       {/* Decorative blob shapes */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-gradient-to-br from-pink-200 to-pink-300 rounded-full blur-3xl opacity-30 -mr-48"></div>
@@ -81,7 +81,7 @@ const Projects: React.FC = () => {
       {/* Dot patterns */}
       <div className="absolute top-1/3 left-20 grid grid-cols-4 gap-2 opacity-20">
         {[...Array(12)].map((_, i) => (
-          <div key={i} className="w-2 h-2 rounded-full bg-pink-500"></div>
+          <div key={i} className="w-2 h-2 rounded-full bg-accent-500"></div>
         ))}
       </div>
 
@@ -94,13 +94,13 @@ const Projects: React.FC = () => {
               : "opacity-0 translate-y-10"
           }`}
         >
-          <p className="text-sm text-gray-500 uppercase tracking-wider mb-3">
+          <p className="text-sm text-dark-500 uppercase tracking-wider mb-3">
             Portfolio
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Featured <span className="text-pink-600">Projects</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-dark-900 mb-4">
+            Featured <span className="text-accent-600">Projects</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-dark-600 max-w-2xl mx-auto">
             Showcasing innovative AI/ML solutions that make a real-world impact
           </p>
         </div>
@@ -125,12 +125,12 @@ const Projects: React.FC = () => {
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3">
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-dark-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3">
                   <a
                     href={project.liveDemo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white text-gray-900 px-5 py-2.5 rounded-full hover:bg-pink-50 transition-all duration-300 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 font-semibold shadow-xl"
+                    className="bg-white text-dark-900 px-5 py-2.5 rounded-full hover:bg-pink-50 transition-all duration-300 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 font-semibold shadow-xl"
                   >
                     <Eye size={16} />
                     Demo
@@ -139,7 +139,7 @@ const Projects: React.FC = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gray-900 text-white px-5 py-2.5 rounded-full hover:bg-gray-800 transition-all duration-300 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 delay-75 font-semibold shadow-xl"
+                    className="bg-dark-900 text-white px-5 py-2.5 rounded-full hover:bg-dark-800 transition-all duration-300 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 delay-75 font-semibold shadow-xl"
                   >
                     <Github size={16} />
                     Code
@@ -147,10 +147,10 @@ const Projects: React.FC = () => {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors">
+                <h3 className="text-xl font-bold text-dark-900 mb-3 group-hover:text-accent-600 transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+                <p className="text-dark-600 mb-4 leading-relaxed text-sm">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -163,12 +163,12 @@ const Projects: React.FC = () => {
                     </span>
                   ))}
                 </div>
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                <div className="flex items-center justify-between pt-4 border-t border-dark-100">
                   <a
                     href={project.liveDemo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-pink-600 hover:text-pink-800 flex items-center gap-1.5 text-sm font-semibold transition-colors"
+                    className="text-accent-600 hover:text-pink-800 flex items-center gap-1.5 text-sm font-semibold transition-colors"
                   >
                     <ExternalLink size={14} />
                     Live Demo
@@ -177,7 +177,7 @@ const Projects: React.FC = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-gray-900 flex items-center gap-1.5 text-sm font-semibold transition-colors"
+                    className="text-dark-600 hover:text-dark-900 flex items-center gap-1.5 text-sm font-semibold transition-colors"
                   >
                     <Github size={14} />
                     GitHub

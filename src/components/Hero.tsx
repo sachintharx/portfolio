@@ -63,7 +63,7 @@ const Hero: React.FC = () => {
           />
         ))}
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/95 via-purple-900/90 to-indigo-900/95"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/95 via-purple-900/90 to-indigo-900/95"></div>
       </div>
 
       {/* Animated floating particles */}
@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
           style={{ animationDelay: "2s" }}
         ></div>
         <div
-          className="absolute top-1/2 right-1/3 w-48 h-48 bg-blue-500/10 rounded-full blur-2xl animate-pulse-slow"
+          className="absolute top-1/2 right-1/3 w-48 h-48 bg-primary-500/10 rounded-full blur-2xl animate-pulse-slow"
           style={{ animationDelay: "4s" }}
         ></div>
       </div>
@@ -143,7 +143,7 @@ const Hero: React.FC = () => {
                 Hashara Vidusanka
               </span>
             </h1>
-            <h2 className="text-2xl md:text-3xl text-blue-100 font-semibold drop-shadow-md">
+            <h2 className="text-2xl md:text-3xl text-primary-100 font-semibold drop-shadow-md">
               Computer Engineering Undergraduate | AI/ML Engineer
             </h2>
             <p className="text-lg text-blue-50/90 leading-relaxed max-w-xl drop-shadow-md">
@@ -155,7 +155,7 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button
                 onClick={handleViewWork}
-                className="group bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1 hover:scale-105"
+                className="group bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1 hover:scale-105"
               >
                 View My Work
                 <ArrowRight
@@ -165,7 +165,7 @@ const Hero: React.FC = () => {
               </button>
               <button
                 onClick={handleDownloadCV}
-                className="group backdrop-blur-md bg-white/10 border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1 hover:scale-105"
+                className="group backdrop-blur-md bg-white/10 border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1 hover:scale-105"
               >
                 Download CV
                 <Download
@@ -178,12 +178,12 @@ const Hero: React.FC = () => {
           <div className="flex justify-center lg:justify-end animate-slide-in-right">
             <div className="relative">
               {/* Decorative elements */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-2xl opacity-30 animate-pulse"></div>
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary-400 to-primary-500 rounded-full blur-2xl opacity-30 animate-pulse"></div>
 
               {/* Rotating ring */}
               <div className="absolute -inset-2 border-2 border-white/10 rounded-full animate-spin-slow"></div>
 
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl backdrop-blur-sm bg-gradient-to-br from-cyan-400/20 to-blue-500/20 hover:scale-105 transition-transform duration-500">
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl backdrop-blur-sm bg-gradient-to-br from-primary-400/20 to-primary-500/20 hover:scale-105 transition-transform duration-500">
                 {!imageError ? (
                   <img
                     src="/profile-image.jpg"
@@ -192,7 +192,7 @@ const Hero: React.FC = () => {
                     onError={() => setImageError(true)}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-cyan-400 to-blue-500">
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-400 to-primary-500">
                     <div className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white">
                       HV
                     </div>
