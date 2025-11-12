@@ -361,6 +361,265 @@
     perspective: 1000px;
   }
 
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* 3D Rotate Animations */
+  .animate-rotate-y {
+    animation: rotateY 2s ease-in-out infinite;
+  }
+
+  .animate-rotate-x {
+    animation: rotateX 2s ease-in-out infinite;
+  }
+
+  .animate-tilt {
+    animation: tilt 10s ease-in-out infinite;
+  }
+
+  @keyframes rotateY {
+    0%, 100% {
+      transform: perspective(1000px) rotateY(0deg);
+    }
+    50% {
+      transform: perspective(1000px) rotateY(180deg);
+    }
+  }
+
+  @keyframes rotateX {
+    0%, 100% {
+      transform: perspective(1000px) rotateX(0deg);
+    }
+    50% {
+      transform: perspective(1000px) rotateX(180deg);
+    }
+  }
+
+  @keyframes tilt {
+    0%, 100% {
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+    }
+    25% {
+      transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+    }
+    75% {
+      transform: perspective(1000px) rotateX(-5deg) rotateY(-5deg);
+    }
+  }
+
+  /* 3D Flip Animations */
+  .animate-flip-x {
+    animation: flipX 0.8s ease-in-out;
+  }
+
+  .animate-flip-y {
+    animation: flipY 0.8s ease-in-out;
+  }
+
+  @keyframes flipX {
+    0% {
+      transform: perspective(800px) rotateX(0deg);
+    }
+    100% {
+      transform: perspective(800px) rotateX(360deg);
+    }
+  }
+
+  @keyframes flipY {
+    0% {
+      transform: perspective(800px) rotateY(0deg);
+    }
+    100% {
+      transform: perspective(800px) rotateY(360deg);
+    }
+  }
+
+  /* 3D Cube Rotation */
+  .animate-cube-rotate {
+    animation: cubeRotate 20s linear infinite;
+  }
+
+  @keyframes cubeRotate {
+    0% {
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+      transform: perspective(1000px) rotateX(180deg) rotateY(180deg);
+    }
+    100% {
+      transform: perspective(1000px) rotateX(360deg) rotateY(360deg);
+    }
+  }
+
+  /* 3D Pop Effect */
+  .animate-3d-pop {
+    animation: pop3d 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  @keyframes pop3d {
+    0% {
+      transform: perspective(1000px) translateZ(-100px) scale(0.5);
+      opacity: 0;
+    }
+    50% {
+      transform: perspective(1000px) translateZ(50px) scale(1.1);
+    }
+    100% {
+      transform: perspective(1000px) translateZ(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* 3D Hover Effects */
+  .hover-3d {
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+  }
+
+  .hover-3d:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(20px);
+  }
+
+  .hover-tilt-3d {
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+  }
+
+  .hover-tilt-3d:hover {
+    transform: perspective(1000px) rotateX(10deg) scale(1.05);
+  }
+
+  .hover-flip-3d {
+    transition: all 0.6s ease;
+    transform-style: preserve-3d;
+  }
+
+  .hover-flip-3d:hover {
+    transform: perspective(1000px) rotateY(180deg);
+  }
+
+  .hover-float-3d {
+    transition: all 0.4s ease;
+  }
+
+  .hover-float-3d:hover {
+    transform: perspective(1000px) translateZ(30px) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  /* 3D Card Flip */
+  .card-3d {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+  }
+
+  .card-3d:hover {
+    transform: perspective(1000px) rotateY(180deg);
+  }
+
+  .card-3d-front,
+  .card-3d-back {
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-3d-back {
+    transform: rotateY(180deg);
+  }
+
+  /* 3D Swing Animation */
+  .animate-swing-3d {
+    animation: swing3d 4s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  @keyframes swing3d {
+    0%, 100% {
+      transform: perspective(1000px) rotateX(0deg);
+    }
+    25% {
+      transform: perspective(1000px) rotateX(15deg);
+    }
+    75% {
+      transform: perspective(1000px) rotateX(-15deg);
+    }
+  }
+
+  /* 3D Floating Animation */
+  .animate-float-3d {
+    animation: float3d 6s ease-in-out infinite;
+  }
+
+  @keyframes float3d {
+    0%, 100% {
+      transform: perspective(1000px) translateY(0px) translateZ(0px);
+    }
+    50% {
+      transform: perspective(1000px) translateY(-20px) translateZ(30px);
+    }
+  }
+
+  /* 3D Bounce */
+  .animate-bounce-3d {
+    animation: bounce3d 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce3d {
+    0%, 100% {
+      transform: perspective(1000px) translateZ(0) scale(1);
+    }
+    50% {
+      transform: perspective(1000px) translateZ(50px) scale(1.1);
+    }
+  }
+
+  /* 3D Ripple Effect */
+  .animate-ripple-3d {
+    animation: ripple3d 1.5s ease-out;
+  }
+
+  @keyframes ripple3d {
+    0% {
+      transform: perspective(1000px) scale(0) translateZ(0);
+      opacity: 1;
+    }
+    100% {
+      transform: perspective(1000px) scale(2) translateZ(100px);
+      opacity: 0;
+    }
+  }
+
+  /* 3D Depth Layers */
+  .layer-1 {
+    transform: translateZ(0);
+  }
+
+  .layer-2 {
+    transform: translateZ(50px);
+  }
+
+  .layer-3 {
+    transform: translateZ(100px);
+  }
+
+  .layer-4 {
+    transform: translateZ(150px);
+  }
+
+  /* Parallax 3D */
+  .parallax-3d {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+  }
+
   /* Glassmorphism Effect */
   .glass {
     background: rgba(255, 255, 255, 0.1);
@@ -381,6 +640,21 @@
   /* Glow on Hover */
   .hover-glow:hover {
     box-shadow: 0 0 30px rgba(14, 165, 233, 0.4);
+  }
+
+  /* 3D Shadow */
+  .shadow-3d {
+    box-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.12),
+      0 10px 20px rgba(0, 0, 0, 0.08),
+      0 20px 40px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-3d-lg {
+    box-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.1),
+      0 20px 40px rgba(0, 0, 0, 0.1),
+      0 40px 80px rgba(0, 0, 0, 0.08);
   }
 }
 
