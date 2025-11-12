@@ -253,102 +253,201 @@ User question: ${userMessage}`,
       {/* Chatbot Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 p-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-full shadow-2xl hover:shadow-accent-500/50 hover:scale-110 transition-all duration-300 group"
+        className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 p-3 md:p-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full shadow-2xl hover:shadow-accent-500/50 hover:scale-110 transition-all duration-300 group"
         aria-label="Open chatbot"
       >
         {isOpen ? (
-          <X size={28} className="group-hover:rotate-90 transition-transform" />
+          <X
+            size={24}
+            className="md:w-7 md:h-7 group-hover:rotate-90 transition-transform"
+          />
         ) : (
           <MessageCircle
-            size={28}
-            className="group-hover:scale-110 transition-transform animate-pulse"
+            size={24}
+            className="md:w-7 md:h-7 group-hover:scale-110 transition-transform animate-pulse"
           />
         )}
       </button>
 
       {/* Chatbot Widget */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-96 h-[600px] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-dark-200 animate-slide-in-right">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-pink-600 to-purple-600 p-6 text-white">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
-                  <MessageCircle size={24} />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg">AI Assistant</h3>
-                  <p className="text-xs text-white/80">Ask me about Hashara</p>
-                </div>
-              </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="hover:bg-white/20 p-2 rounded-full transition-colors"
-              >
-                <X size={20} />
-              </button>
-            </div>
-          </div>
-
-          {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-dark-50">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${
-                  message.role === "user" ? "justify-end" : "justify-start"
-                }`}
-              >
-                <div
-                  className={`max-w-[85%] rounded-2xl px-5 py-4 ${
-                    message.role === "user"
-                      ? "bg-gradient-to-r from-pink-600 to-purple-600 text-white"
-                      : "bg-white text-dark-700 shadow-md border border-dark-200"
-                  }`}
-                >
-                  <div className="text-sm leading-relaxed">
-                    {message.role === "assistant" ? (
-                      formatMessage(message.content)
-                    ) : (
-                      <p className="whitespace-pre-wrap">{message.content}</p>
-                    )}
+        <>
+          {/* Mobile: Full Screen Overlay */}
+          <div className="md:hidden fixed inset-0 z-50 bg-white flex flex-col animate-slide-up">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-primary-600 to-accent-600 p-4 text-white shadow-lg">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
+                    <MessageCircle size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-base">AI Assistant</h3>
+                    <p className="text-xs text-white/80">
+                      Ask me about Hashara
+                    </p>
                   </div>
                 </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="hover:bg-white/20 p-2 rounded-full transition-colors"
+                >
+                  <X size={22} />
+                </button>
               </div>
-            ))}
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-white text-dark-800 rounded-2xl px-4 py-3 shadow-md border border-dark-200">
-                  <Loader2 size={20} className="animate-spin text-pink-600" />
-                </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
+            </div>
 
-          {/* Input Area */}
-          <div className="p-4 bg-white border-t border-dark-200">
-            <div className="flex items-center gap-2">
-              <input
-                ref={inputRef}
-                type="text"
-                value={inputMessage}
-                onChange={(e) => setInputMessage(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Type your message..."
-                disabled={isLoading}
-                className="flex-1 px-4 py-3 bg-dark-50 rounded-full focus:outline-none focus:ring-2 focus:ring-accent-500 transition-all text-sm disabled:opacity-50"
-              />
-              <button
-                onClick={sendMessage}
-                disabled={!inputMessage.trim() || isLoading}
-                className="p-3 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-full hover:shadow-lg hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              >
-                <Send size={20} />
-              </button>
+            {/* Messages Container */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-dark-50">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`flex ${
+                    message.role === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`max-w-[85%] rounded-2xl px-4 py-3 ${
+                      message.role === "user"
+                        ? "bg-gradient-to-r from-primary-600 to-accent-600 text-white"
+                        : "bg-white text-dark-700 shadow-md border border-dark-200"
+                    }`}
+                  >
+                    <div className="text-sm leading-relaxed">
+                      {message.role === "assistant" ? (
+                        formatMessage(message.content)
+                      ) : (
+                        <p className="whitespace-pre-wrap">{message.content}</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="bg-white text-dark-800 rounded-2xl px-4 py-3 shadow-md border border-dark-200">
+                    <Loader2
+                      size={18}
+                      className="animate-spin text-primary-600"
+                    />
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input Area */}
+            <div className="p-3 bg-white border-t border-dark-200 safe-area-bottom">
+              <div className="flex items-center gap-2">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Type your message..."
+                  disabled={isLoading}
+                  className="flex-1 px-4 py-3 bg-dark-50 rounded-full focus:outline-none focus:ring-2 focus:ring-accent-500 transition-all text-sm disabled:opacity-50"
+                />
+                <button
+                  onClick={sendMessage}
+                  disabled={!inputMessage.trim() || isLoading}
+                  className="p-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full hover:shadow-lg hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  <Send size={18} />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+
+          {/* Desktop: Floating Widget */}
+          <div className="hidden md:flex fixed bottom-24 right-6 z-50 w-96 h-[600px] bg-white rounded-3xl shadow-2xl flex-col overflow-hidden border border-dark-200 animate-slide-in-right">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-primary-600 to-accent-600 p-6 text-white">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
+                    <MessageCircle size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg">AI Assistant</h3>
+                    <p className="text-xs text-white/80">
+                      Ask me about Hashara
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="hover:bg-white/20 p-2 rounded-full transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            {/* Messages Container */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-dark-50">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`flex ${
+                    message.role === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`max-w-[85%] rounded-2xl px-5 py-4 ${
+                      message.role === "user"
+                        ? "bg-gradient-to-r from-primary-600 to-accent-600 text-white"
+                        : "bg-white text-dark-700 shadow-md border border-dark-200"
+                    }`}
+                  >
+                    <div className="text-sm leading-relaxed">
+                      {message.role === "assistant" ? (
+                        formatMessage(message.content)
+                      ) : (
+                        <p className="whitespace-pre-wrap">{message.content}</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="bg-white text-dark-800 rounded-2xl px-4 py-3 shadow-md border border-dark-200">
+                    <Loader2
+                      size={20}
+                      className="animate-spin text-primary-600"
+                    />
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input Area */}
+            <div className="p-4 bg-white border-t border-dark-200">
+              <div className="flex items-center gap-2">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Type your message..."
+                  disabled={isLoading}
+                  className="flex-1 px-4 py-3 bg-dark-50 rounded-full focus:outline-none focus:ring-2 focus:ring-accent-500 transition-all text-sm disabled:opacity-50"
+                />
+                <button
+                  onClick={sendMessage}
+                  disabled={!inputMessage.trim() || isLoading}
+                  className="p-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full hover:shadow-lg hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  <Send size={20} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </>
   );
