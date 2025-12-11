@@ -181,7 +181,7 @@ const Chatbot: React.FC = () => {
 
     try {
       const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDVesbvbOl7dYrtGcCJy3q86vgiHrg29pc",
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyDk2YHoNVO_-FsaCb6WuATULBhRnlg823M",
         {
           method: "POST",
           headers: {
